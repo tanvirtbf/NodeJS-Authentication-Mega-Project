@@ -5,6 +5,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import connectDB from './config/connectDb.js'
 import passport from 'passport'
+import userRoutes from './routes/userRoutes.js'
 
 const app = express()
 
@@ -31,6 +32,9 @@ app.use(cookieParser())
 // Connect Database
 const DATABASE_URL = process.env.DATABASE_URL
 connectDB(DATABASE_URL)
+
+// Routes
+app.use("/api/user", userRoutes)
 
 app.listen(port, ()=> {
   console.log(`Server listening at http://localhost:${port}`)
