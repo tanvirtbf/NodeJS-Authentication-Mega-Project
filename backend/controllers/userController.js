@@ -1,5 +1,6 @@
 import UserModel from '../models/User.js'
 import bcrypt from 'bcrypt'
+import sendEmailVerificationOTP from '../utils/sendEmailVerificationOTP.js'
 
 // User Registration
 const userRegistration = async(req,res) => {
@@ -41,12 +42,16 @@ const userRegistration = async(req,res) => {
       password: hashedPassword 
     })
 
+    sendEmailVerificationOTP(req, newUser)
+
     // Send Success response
     res.status(201).json({
       status: "Success",
       message: "Registration Success",
       user: { id: newUser._id, email: newUser.email },
     })
+
+
     
   } catch (error) {
 
