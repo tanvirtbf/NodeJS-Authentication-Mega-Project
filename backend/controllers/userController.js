@@ -125,6 +125,63 @@ const verifyEmail = async (req,res)=> {
 
 
 // User Login
+const userLogin = async (req,res)=> {
+  try {
+
+    const { email, password } = req.body
+
+    // Check if email and password are provided
+    if (!email || !password) {
+      return res.status(400).json({ status: "failed", message: "Email and password are required" });
+    }
+
+    // Find user by email
+    const user = await UserModel.findOne({ email });
+
+    // Check if user exists
+    if (!user) {
+      return res.status(404).json({ status: "failed", message: "Invalid Email or Password" });
+    }
+
+    // Check if user exists
+    if (!user.is_verified) {
+      return res.status(401).json({ status: "failed", message: "Your account is not verified" });
+    }
+
+    // Compare passwords / Check Password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ status: "failed", message: "Invalid email or password" });
+    }
+
+    // // Generate tokens
+    // const { accessToken, refreshToken, accessTokenExp, refreshTokenExp } = await generateTokens(user)
+
+    // // Set Cookies
+    // setTokensCookies(res, accessToken, refreshToken, accessTokenExp, refreshTokenExp)
+
+    // // Send success response with tokens
+    // res.status(200).json({
+    //   user: { id: user._id, email: user.email, name: user.name, roles: user.roles[0] },
+    //   status: "success",
+    //   message: "Login successful",
+    //   access_token: accessToken,
+    //   refresh_token: refreshToken,
+    //   access_token_exp: accessTokenExp,
+    //   is_auth: true
+    // });
+
+    
+  } catch (error) {
+
+    console.log(error)
+    res.status(500).json({status: "failed", message:"Unable to Register, Please try again later!"})
+
+  }
+}
+
+
+
 
 // Get New Access Token OR Refresh Token
 
@@ -138,5 +195,5 @@ const verifyEmail = async (req,res)=> {
 
 // Logout
 
-export { userRegistration, verifyEmail }
+export { userRegistration, verifyEmail, userLogin }
 
