@@ -4,6 +4,7 @@ import sendEmailVerificationOTP from '../utils/sendEmailVerificationOTP.js'
 import EmailVerificationModel from '../models/EmailVerification.js'
 import setTokensCookies from '../utils/setTokensCookies.js'
 import generateTokens from '../utils/generateTokens.js'
+import refreshAccessToken from '../utils/refreshAccessToken.js'
 
 
 // User Registration
@@ -223,5 +224,5 @@ const getNewAccessToken = async (req,res) => {
 
 // Logout
 
-export { userRegistration, verifyEmail, userLogin }
+export { userRegistration, verifyEmail, userLogin, getNewAccessToken }
 
