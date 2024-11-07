@@ -22,6 +22,8 @@ const generateTokens = async (user) => {
       // { expiresIn: '5d' }
     );
 
+    return Promise.resolve({ accessToken, refreshToken, accessTokenExp, refreshTokenExp });
+    
   } catch (error) {
     
   }
