@@ -61,8 +61,8 @@ const userRegistration = async(req,res) => {
   }
 }
 
-// User Email Verification
 
+// User Email Verification
 const verifyEmail = async (req,res)=> {
   try {
 
@@ -108,7 +108,8 @@ const verifyEmail = async (req,res)=> {
 
     // OTP is valid and not expired, mark email as verified
     existingUser.is_verified = true;
-    await existingUser.save();
+    // await existingUser.save();
+    await UserModel.findOneAndUpdate({_id: existingUser._id}, {is_verified: true})
 
     // Delete email verification document
     await EmailVerificationModel.deleteMany({ userId: existingUser._id });
@@ -121,6 +122,7 @@ const verifyEmail = async (req,res)=> {
 
   }
 }
+
 
 // User Login
 
@@ -136,5 +138,5 @@ const verifyEmail = async (req,res)=> {
 
 // Logout
 
-export { userRegistration, }
+export { userRegistration, verifyEmail }
 
