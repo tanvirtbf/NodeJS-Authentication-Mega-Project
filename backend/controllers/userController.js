@@ -6,7 +6,6 @@ import setTokensCookies from '../utils/setTokensCookies.js'
 import generateTokens from '../utils/generateTokens.js'
 import refreshAccessToken from '../utils/refreshAccessToken.js'
 
-
 // User Registration
 const userRegistration = async(req,res) => {
   try {
