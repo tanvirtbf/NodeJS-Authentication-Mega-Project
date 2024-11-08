@@ -1,6 +1,9 @@
 import express from "express";
 import {
+    changeUserPassword,
+  sendUserPasswordResetEmail,
   userLogin,
+  userLogout,
   userProfile,
   userRegistration,
   verifyEmail,
@@ -20,8 +23,9 @@ router.post("/refresh-token", refreshAccessToken);
 // Protected Routes
 router.get("/me", accessTokenAutoRefresh, passport.authenticate("jwt", { session: false }), userProfile);
 
-router.post('/change-password', accessTokenAutoRefresh, passport.authenticate('jwt', { session: false }), )
-router.post('/logout', accessTokenAutoRefresh, passport.authenticate('jwt', { session: false }), UserController.userLogout)
+router.post('/change-password', accessTokenAutoRefresh, passport.authenticate('jwt', { session: false }), changeUserPassword)
+router.post('/logout', accessTokenAutoRefresh, passport.authenticate('jwt', { session: false }), userLogout)
 
+router.get('/reset-password-link', sendUserPasswordResetEmail)
 
 export default router;

@@ -5,6 +5,9 @@ import EmailVerificationModel from '../models/EmailVerification.js'
 import setTokensCookies from '../utils/setTokensCookies.js'
 import generateTokens from '../utils/generateTokens.js'
 import refreshAccessToken from '../utils/refreshAccessToken.js'
+import UserRefreshTokenModel from '../models/UserRefreshToken.js'
+import jwt from 'jsonwebtoken'
+import transporter from '../config/emailConfig.js'
 
 // User Registration
 const userRegistration = async(req,res) => {
@@ -202,7 +205,6 @@ const getNewAccessToken = async (req,res) => {
     });
 
   } catch (error) {
-    console.error(error);
     res.status(500).json({ status: "failed", message: "Unable to generate new token, please try again later" });
   }
 }
@@ -267,7 +269,6 @@ const sendUserPasswordResetEmail = async (req, res) => {
     const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' });
     // Reset Link
     const resetLink = `${process.env.FRONTEND_HOST}/account/reset-password-confirm/${user._id}/${token}`;
-    console.log(resetLink);
     // Send password reset email  
     await transporter.sendMail({
       from: process.env.EMAIL_FROM,
@@ -345,7 +346,7 @@ const userLogout = async (req, res) => {
     // Clear access token and refresh token cookies
     res.clearCookie('accessToken');
     res.clearCookie('refreshToken');
-    res.clearCookie('is_auth');
+    // res.clearCookie('is_auth');
 
     res.status(200).json({ status: "success", message: "Logout successful" });
   } catch (error) {
