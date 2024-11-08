@@ -18,11 +18,10 @@ router.post("/login", userLogin);
 router.post("/refresh-token", refreshAccessToken);
 
 // Protected Routes
-router.get(
-  "/me",
-  accessTokenAutoRefresh,
-  passport.authenticate("jwt", { session: false }),
-  userProfile
-);
+router.get("/me", accessTokenAutoRefresh, passport.authenticate("jwt", { session: false }), userProfile);
+
+router.post('/change-password', accessTokenAutoRefresh, passport.authenticate('jwt', { session: false }), )
+router.post('/logout', accessTokenAutoRefresh, passport.authenticate('jwt', { session: false }), UserController.userLogout)
+
 
 export default router;
