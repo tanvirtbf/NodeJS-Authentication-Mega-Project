@@ -211,11 +211,15 @@ const getNewAccessToken = async (req,res) => {
 
 
 
+// Profile or Logged in User
+const userProfile = async (req,res) => {
+  console.log(req.user)
+  res.send({ "user" : req.user })
+}
+
 
 
 // Change Password
-
-// Profile or Logged in User
 
 // Send Password Reset Email
 
@@ -223,5 +227,5 @@ const getNewAccessToken = async (req,res) => {
 
 // Logout
 
-export { userRegistration, verifyEmail, userLogin, getNewAccessToken }
+export { userRegistration, verifyEmail, userLogin, getNewAccessToken, userProfile }
 
