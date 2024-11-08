@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import connectDB from './config/connectDb.js'
 import passport from 'passport'
 import userRoutes from './routes/userRoutes.js'
+import './config/passport-jwt-strategy.js'
 
 const app = express()
 
