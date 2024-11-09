@@ -22,13 +22,13 @@ const setTokensCookies = (res, accessToken, refreshToken, newAccessTokenExp, new
     // sameSite: 'strict', // Adjust according to your requirements
   });
 
-  // // Set Cookie for is_auth
-  // res.cookie('is_auth', true, {
-  //   httpOnly: false,
-  //   secure: false, // Set to true if using HTTPS
-  //   maxAge: refreshTokenmaxAge,
-  //   // sameSite: 'strict', // Adjust according to your requirements
-  // });
+  // Set Cookie for is_auth
+  res.cookie('is_auth', true, {
+    httpOnly: false,
+    secure: false, // Set to true if using HTTPS
+    maxAge: refreshTokenmaxAge,
+    // sameSite: 'strict', // Adjust according to your requirements
+  });
 
 }
 
