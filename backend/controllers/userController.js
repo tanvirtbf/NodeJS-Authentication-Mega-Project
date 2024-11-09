@@ -269,6 +269,7 @@ const sendUserPasswordResetEmail = async (req, res) => {
     const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' });
     // Reset Link
     const resetLink = `${process.env.FRONTEND_HOST}/account/reset-password-confirm/${user._id}/${token}`;
+    console.log(resetLink)
     // Send password reset email  
     await transporter.sendMail({
       from: process.env.EMAIL_FROM,
@@ -284,6 +285,7 @@ const sendUserPasswordResetEmail = async (req, res) => {
   }
 }
 
+//http://localhost:3000/account/reset-password-confirm/672ed6f976e5b6e620892d2c/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NzJlZDZmOTc2ZTViNmU2MjA4OTJkMmMiLCJpYXQiOjE3MzExMjM2MDMsImV4cCI6MTczMTEyNDUwM30.xVxOawKw_2MjWlVN7MPy6pFMA_SMrGCErYcX8IxdXUA
 
 
 

@@ -4,6 +4,7 @@ import {
   sendUserPasswordResetEmail,
   userLogin,
   userLogout,
+  userPasswordReset,
   userProfile,
   userRegistration,
   verifyEmail,
@@ -27,5 +28,7 @@ router.post('/change-password', accessTokenAutoRefresh, passport.authenticate('j
 router.post('/logout', accessTokenAutoRefresh, passport.authenticate('jwt', { session: false }), userLogout)
 
 router.get('/reset-password-link', sendUserPasswordResetEmail)
+
+router.post('/reset-password/:id/:token', userPasswordReset)
 
 export default router;
