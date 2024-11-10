@@ -3,10 +3,10 @@ dotenv.config()
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import connectDB from './config/connectDb.js'
 import passport from 'passport'
 import userRoutes from './routes/userRoutes.js'
 import './config/passport-jwt-strategy.js'
+import connectDB from './config/connectdb.js'
 
 const app = express()
 
