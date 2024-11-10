@@ -52,7 +52,7 @@ const userRegistration = async(req,res) => {
 
     // Send Success response
     res.status(201).json({
-      status: "Success",
+      status: "success",
       message: "Registration Success",
       user: { id: newUser._id, email: newUser.email },
     })
@@ -139,7 +139,7 @@ const userLogin = async (req,res)=> {
     if (!email || !password) {
       return res.status(400).json({ status: "failed", message: "Email and password are required" });
     }
-
+    
     // Find user by email
     const user = await UserModel.findOne({ email });
 

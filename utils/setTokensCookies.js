@@ -30,6 +30,8 @@ const setTokensCookies = (res, accessToken, refreshToken, newAccessTokenExp, new
     // sameSite: 'strict', // Adjust according to your requirements
   });
 
+  console.log(res.cookie)
+
 }
 
 export default setTokensCookies

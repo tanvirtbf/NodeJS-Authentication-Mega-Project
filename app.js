@@ -10,7 +10,7 @@ import './config/passport-jwt-strategy.js'
 
 const app = express()
 
-const port = process.env.PORT
+const port = process.env.PORT || 5514
 
 // cors setup..
 const corsOptions = {
@@ -18,8 +18,11 @@ const corsOptions = {
   origin: process.env.FRONTEND_HOST,
   Credential: true,
   optionsSuccessStatus: 200,
+  
 }
 app.use(cors(corsOptions))
+
+// app.use(cors());
 
 // JSON 
 app.use(express.json())
