@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const connectDB = async (DATABASE_URL) => {
   try {
@@ -8,7 +8,6 @@ const connectDB = async (DATABASE_URL) => {
     await mongoose.connect(DATABASE_URL, DB_OPTIONS)
     console.log('Connected Successfully...')
   } catch (error) {
-    console.log('Error while connect database')
     console.log(error)
   }
 }

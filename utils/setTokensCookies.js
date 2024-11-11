@@ -1,10 +1,6 @@
 const setTokensCookies = (res, accessToken, refreshToken, newAccessTokenExp, newRefreshTokenExp) => {
-
-  const accessTokenMaxAge = (newAccessTokenExp - Math.floor(Date.now() / 1000)) * 1000; // 100000 mili second - 100 second - 1 minute 40 second
-  const refreshTokenmaxAge = (newRefreshTokenExp - Math.floor(Date.now() / 1000)) * 1000; // 432000000 mili second - 432000 second - 120 hours - 5 day
-
-  // console.log(accessTokenMaxAge) // 100000 Mili Second
-  // console.log(refreshTokenmaxAge) // 432000000 Mili Second
+  const accessTokenMaxAge = (newAccessTokenExp - Math.floor(Date.now() / 1000)) * 1000;
+  const refreshTokenmaxAge = (newRefreshTokenExp - Math.floor(Date.now() / 1000)) * 1000;
 
   // Set Cookie for Access Token
   res.cookie('accessToken', accessToken, {
@@ -21,7 +17,6 @@ const setTokensCookies = (res, accessToken, refreshToken, newAccessTokenExp, new
     maxAge: refreshTokenmaxAge,
     // sameSite: 'strict', // Adjust according to your requirements
   });
-
   // Set Cookie for is_auth
   res.cookie('is_auth', true, {
     httpOnly: false,
@@ -29,9 +24,6 @@ const setTokensCookies = (res, accessToken, refreshToken, newAccessTokenExp, new
     maxAge: refreshTokenmaxAge,
     // sameSite: 'strict', // Adjust according to your requirements
   });
-
-  console.log(res.cookie)
-
 }
 
 export default setTokensCookies
