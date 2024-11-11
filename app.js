@@ -38,7 +38,7 @@ const DATABASE_URL = process.env.DATABASE_URL
 connectDB(DATABASE_URL)
 
 // Routes
-app.use("", userRoutes)
+app.use("/api/user", userRoutes)
 
 app.listen(port, ()=> {
   console.log(`Server listening at http://localhost:${port}`)
