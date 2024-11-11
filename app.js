@@ -10,7 +10,7 @@ import connectDB from './config/connectdb.js'
 
 const app = express()
 
-const port = process.env.PORT || 5514
+const port = process.env.PORT
 
 // cors setup..
 const corsOptions = {
@@ -38,7 +38,7 @@ const DATABASE_URL = process.env.DATABASE_URL
 connectDB(DATABASE_URL)
 
 // Routes
-app.use("/api/user", userRoutes)
+app.use("", userRoutes)
 
 app.listen(port, ()=> {
   console.log(`Server listening at http://localhost:${port}`)
